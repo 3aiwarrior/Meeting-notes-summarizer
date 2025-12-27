@@ -235,6 +235,53 @@ black .
 mypy app/
 ```
 
+## Production Deployment
+
+### Deploy to Hostinger VPS
+
+For detailed production deployment instructions to Hostinger with domain configuration:
+
+📘 **[Complete Deployment Guide](HOSTINGER_DEPLOYMENT.md)** - Step-by-step instructions for:
+- VPS setup and Docker installation
+- DNS configuration for your domain
+- SSL/HTTPS certificate setup with Let's Encrypt
+- Nginx reverse proxy configuration
+- Environment variable setup
+- Security hardening
+
+✅ **[Deployment Checklist](DEPLOYMENT_CHECKLIST.md)** - Quick reference checklist
+
+**Quick Overview:**
+```bash
+# 1. Configure DNS (in Hostinger panel)
+# Add A records pointing to your VPS IP
+
+# 2. On VPS: Install Docker & dependencies
+apt update && apt upgrade -y
+curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+apt install -y docker-compose nginx certbot python3-certbot-nginx
+
+# 3. Deploy application
+cd /var/www
+git clone YOUR_REPO_URL meeting-notes-summarizer
+cd meeting-notes-summarizer
+
+# 4. Configure environment (update .env with production values)
+nano .env  # Set DEBUG=False, update CORS_ORIGINS, generate SECRET_KEY
+
+# 5. Build and start
+docker-compose up -d --build
+
+# 6. Configure Nginx + SSL
+# See HOSTINGER_DEPLOYMENT.md for detailed Nginx configuration
+certbot --nginx -d yourdomain.com -d www.yourdomain.com -d api.yourdomain.com
+```
+
+**Domain Structure:**
+- `https://summarizer.sbs` → Frontend (React app)
+- `https://api.summarizer.sbs` → Backend API
+- `https://api.summarizer.sbs/api/docs` → API documentation
+
 ## API Endpoints
 
 | Endpoint | Method | Description |
