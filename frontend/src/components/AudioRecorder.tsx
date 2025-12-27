@@ -15,7 +15,6 @@ export function AudioRecorder() {
   const [recordingTime, setRecordingTime] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [summary, setSummary] = useState<SummaryResponse | null>(null);
-  const [audioId, setAudioId] = useState<string>('');
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -100,7 +99,6 @@ export function AudioRecorder() {
 
       // Upload to backend
       const uploadResponse = await api.uploadAudio(file);
-      setAudioId(uploadResponse.id);
 
       // Start processing
       await api.startProcessing(uploadResponse.id);
@@ -158,7 +156,6 @@ export function AudioRecorder() {
     setRecordingTime(0);
     setErrorMessage('');
     setSummary(null);
-    setAudioId('');
   };
 
   return (
