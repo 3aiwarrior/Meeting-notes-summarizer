@@ -7,7 +7,9 @@
       "Bash(python -m black:*)",
       "Bash(python -m pytest:*)",
       "Bash(python:*)",
-      "Bash(GIT_ASKPASS=/tmp/git-askpass.sh GIT_USERNAME=3aiwarrior git push:*)"
+      "Bash(GIT_ASKPASS=/tmp/git-askpass.sh GIT_USERNAME=3aiwarrior git push:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd missing frontend files: pages, context, hooks, UI components\n\n- Add HomePage, UploadPage, ResultsPage with routing\n- Add reusable UI components \\(Button, Card, Input\\)\n- Add MeetingContext for global state management\n- Add useAudioUpload and usePolling custom hooks\n- Add react-router-dom for navigation\n- Add favicon and updated styles\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   },
   "model": "opus"
