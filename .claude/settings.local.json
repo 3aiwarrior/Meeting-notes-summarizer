@@ -6,7 +6,9 @@
       "Bash(python -m ruff check:*)",
       "Bash(python -m black:*)",
       "Bash(python -m pytest:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(GIT_ASKPASS=/tmp/git-askpass.sh GIT_USERNAME=3aiwarrior git push:*)"
     ]
-  }
+  },
+  "model": "opus"
 }
